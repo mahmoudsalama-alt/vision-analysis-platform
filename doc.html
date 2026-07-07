@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: #f5f7fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .architecture {
+            position: relative;
+            width: 900px;
+            height: 500px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        .gcp-header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gcp-logo {
+            width: 30px;
+        }
+
+        .gcp-title {
+            font-size: 18px;
+            color: #5f6368;
+        }
+
+        .vpc-container {
+            position: absolute;
+            top: 80px;
+            left: 50px;
+            width: 800px;
+            height: 350px;
+            background: #e8f0fe;
+            border-radius: 8px;
+            border: 1px solid #4285f4;
+            padding: 20px;
+        }
+
+        .component {
+            position: absolute;
+            padding: 12px;
+            background: white;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 12px;
+            border: 1px solid #dadce0;
+            width: 90px;
+            height: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .component i {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #4285f4;
+        }
+
+        #google-chat {
+            top: 50px;
+            left: 50px;
+        }
+
+        #dialogflow {
+            top: 50px;
+            left: 200px;
+        }
+
+        #cloud-function1 {
+            top: 50px;
+            left: 350px;
+        }
+
+        #server {
+            top: 180px;
+            left: 200px;
+        }
+
+        #cloud-storage {
+            top: 180px;
+            left: 50px;
+        }
+
+        #database {
+            top: 180px;
+            left: 350px;
+        }
+
+        #cloud-function2 {
+            top: 180px;
+            left: 500px;
+        }
+
+        #crm {
+            top: 180px;
+            left: 650px;
+        }
+
+        .arrow {
+            position: absolute;
+            background: #5f6368;
+            height: 2px;
+            transform-origin: left center;
+            z-index: 1;
+        }
+
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: -4px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 5px 0 5px 8px;
+            border-color: transparent transparent transparent #5f6368;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="architecture">
+        <div class="gcp-header">
+            <svg class="gcp-logo" viewBox="0 0 256 256">
+                <path d="M170.2 96.6l11.4-11.4 11.4 11.4-11.4 11.4z" fill="#EA4335"/>
+                <path d="M164.9 88.4l17.5-17.5 17.5 17.5-17.5 17.5z" fill="#4285F4"/>
+                <path d="M184.3 85.5l11.4-11.4 11.4 11.4-11.4 11.4z" fill="#34A853"/>
+            </svg>
+            <span class="gcp-title">Google Cloud Platform</span>
+        </div>
+
+        <div class="vpc-container">
+            <div style="color: #4285f4; margin-bottom: 10px;">Virtual Private Cloud</div>
+            
+            <div class="component" id="google-chat">
+                <i class="fab fa-google"></i>
+                <div>Google Chat</div>
+            </div>
+
+            <div class="component" id="dialogflow">
+                <i class="fas fa-robot"></i>
+                <div>Dialogflow CX</div>
+            </div>
+
+            <div class="component" id="cloud-function1">
+                <i class="fas fa-bolt"></i>
+                <div>Cloud Function</div>
+            </div>
+
+            <div class="component" id="server">
+                <i class="fas fa-server"></i>
+                <div>VM Server</div>
+            </div>
+
+            <div class="component" id="cloud-storage">
+                <i class="fas fa-database"></i>
+                <div>Cloud Storage</div>
+            </div>
+
+            <div class="component" id="database">
+                <i class="fas fa-database"></i>
+                <div>Cloud SQL</div>
+            </div>
+
+            <div class="component" id="cloud-function2">
+                <i class="fas fa-bolt"></i>
+                <div>Cloud Function</div>
+            </div>
+
+            <div class="component" id="crm">
+                <i class="fas fa-users-cog"></i>
+                <div>CRM System</div>
+            </div>
+        </div>
+
+        <script>
+            function createArrow(start, end) {
+                const container = document.createElement('div');
+                container.className = 'arrow';
+                
+                const startElement = document.getElementById(start);
+                const endElement = document.getElementById(end);
+                
+                const startRect = startElement.getBoundingClientRect();
+                const endRect = endElement.getBoundingClientRect();
+                const containerRect = document.querySelector('.vpc-container').getBoundingClientRect();
+                
+                const startX = startRect.left + startRect.width/2 - containerRect.left;
+                const startY = startRect.top + startRect.height/2 - containerRect.top;
+                const endX = endRect.left + endRect.width/2 - containerRect.left;
+                const endY = endRect.top + endRect.height/2 - containerRect.top;
+                
+                const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+                const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+                
+                container.style.width = (length - 10) + 'px';
+                container.style.left = startX + 'px';
+                container.style.top = startY + 'px';
+                container.style.transform = `rotate(${angle}deg)`;
+                
+                document.querySelector('.vpc-container').appendChild(container);
+            }
+
+            window.onload = function() {
+                createArrow('google-chat', 'dialogflow');
+                createArrow('dialogflow', 'cloud-function1');
+                createArrow('cloud-function1', 'server');
+                createArrow('server', 'cloud-storage');
+                createArrow('server', 'database');
+                createArrow('server', 'cloud-function2');
+                createArrow('cloud-function2', 'crm');
+            }
+        </script>
+    </div>
+</body>
+</html>
