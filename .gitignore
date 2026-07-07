@@ -37,36 +37,10 @@ wheels/
 *.swo
 *~
 
-# Model weights (large files)
-weights/
-*.pt
-*.pth
-*.onnx
-*.pb
-
-# Media files (large files)
-*.mp4
-*.avi
-*.mov
-*.mkv
-*.zip
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.bmp
-
-# Google Cloud credentials (sensitive)
-*-api.json
-*.json
-!package.json
-!requirements.json
-
-# Temporary files
-temp_*
-screenshot/
-ppe/
-images/
+# Google Cloud credentials (sensitive - DO NOT PUSH)
+byteeit-testing-project-cloud-vision-api.json
+*credentials*.json
+*-service-account*.json
 
 # Streamlit
 .streamlit/
